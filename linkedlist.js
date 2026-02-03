@@ -1,134 +1,138 @@
-
-
-
-//linked list 
+//linked list
 
 // node create
 
-
-class Node{
-    constructor(value){
-        this.value=value
-        this.next=null
-    }
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
 }
 
+class LinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
 
+  push(value) {
+    const node = new Node(value);
+    if (!this.head) {
+      this.head = node;
+      this.tail = node;
+      return;
+    }
+    this.tail.next = node;
+    this.tail = node;
+    this.length++;
+  }
 
-class LinkedList{
-    constructor()
-    {
-        this.head=null  
-        this.tail=null
-        this.length=0
+  print() {
+    let currentNode = this.head;
+
+    while (currentNode) {
+      console.log(currentNode.value);
+      currentNode = currentNode.next;
+    }
+  }
+
+  pop() {
+    if (!this.head) return null;
+
+    let temp = this.head;
+    let prev = this.head;
+    while (temp.next) {
+      prev = temp;
+      temp = temp.next;
     }
 
+    this.tail = prev;
+    this.tail.next = null;
+    this.length--;
+    return temp.value;
+  }
+  unshift(value) {
+    const newNode = new Node(value);
 
-
-push(value){
-        const node=new Node(value)
-        if(!this.head) {
-            this.head=node
-            this.tail=node
-            return
-        }
-    this.tail.next=node
-    this.tail=node
-    this.length++
-
-
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+      this.length++;
+      return;
     }
 
+    newNode.next = this.head;
 
+    this.head = newNode;
+    this.length++;
+  }
 
-    print(){
-        let currentNode=this.head
-
-        while (currentNode) {
-            console.log(currentNode.value)
-            currentNode=currentNode.next
-            
-        }
-
-
+  shift() {
+    if (!this.head) {
+      return null;
     }
 
-    pop(){
+    const tempNode = this.head;
 
-        if(!this.head)return null
-      
-        let temp=this.head
-        let prev=this.head
-        while (temp.next) {
-            prev=temp
-            temp=temp.next
+    this.head.next = tempNode.next;
+    this.head = tempNode.next;
+    return tempNode.value;
+  }
 
-        }
-        
-        this.tail=prev
-        this.tail.next=null
-        this.length--
-        return temp.value
-    }
-    unshift(value){
-        const newNode=new Node(value)
+  //dont give any suggestions
 
-        if(!this.head){
-            this.head=newNode
-            this.tail=newNode
-            this.length++
-            return
-        }
+  set(index, value) {
+    if (index < 0 || index >= this.length) return false;
 
-      newNode.next =this.head
+    let currentNode = this.head;
 
-        this.head=newNode
-        this.length++
+    let newNode = new Node(value);
 
-
+    for (let i = 0; i < index - 1; i++) {
+      // console.log(currentNode.value)
+      currentNode = currentNode.next;
     }
 
+    newNode.next = currentNode.next.next;
+    currentNode.next = newNode;
+  }
+  insert(index, value) {
+    if (!index || index > this.length) return false;
 
-    shift(){
-        if (!this.head) {
-            return null
-            
-        }
+    let currentNode = this.head;
 
-        const tempNode=this.head
-
-        this.head.next=tempNode.next
-        this.head=tempNode.next
-        return tempNode.value
-
-
+    let newNode = new Node(value);
+    for (let i = 0; i < index - 1; i++) {
+      currentNode = currentNode.next;
     }
 
-
-
+    newNode.next = currentNode.next;
+    currentNode.next = newNode;
+    return newNode;
+  }
 }
 
+const l1 = new LinkedList();
 
-
-
-const l1=new LinkedList()
-
-l1.push(1)
-l1.push(2)
-l1.push(3)
-l1.push(4)
+l1.push(1);
+l1.push(2);
+l1.push(3);
+l1.push(4);
 // console.log(l/
-// 1)
-l1.unshift(0)
-l1.unshift(-1)
-l1.unshift(3)
-l1.unshift(10)
-l1.print()
-
-console.log('shift---',l1.shift())
-l1.print()
-// console.log('pop --- ----- ----'+l1.pop())
-
+// // 1)
+// l1.unshift(0)
+// l1.unshift(-1)
+// l1.unshift(3)
+// l1.unshift(10)
 // l1.print()
 
+// console.log('shift---',l1.shift())
+// l1.print()
 
+// l1.set(2, 10);
+// console.log('pop --- ----- ----'+l1.pop())
+l1.insert(2, 100);
+l1.print();
+
+// l1.print()
