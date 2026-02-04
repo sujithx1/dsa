@@ -132,7 +132,7 @@ l1.push(4);
 
 // l1.set(2, 10);
 // console.log('pop --- ----- ----'+l1.pop())
-l1.insert(2, 100);
-l1.print();
+// l1.insert(2, 100);
+// l1.print();
 
 // l1.print()
