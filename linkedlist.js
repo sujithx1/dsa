@@ -111,6 +111,39 @@ class LinkedList {
     currentNode.next = newNode;
     return newNode;
   }
+
+
+  reverse(){
+      if(!this.length)return null
+
+        let temp=this.head
+
+        this.head=this.tail
+           this.tail=temp
+
+
+           let next=temp
+           let  prev=null
+
+
+
+           while (temp) {
+            next=temp.next
+            temp.next=prev
+            prev=temp
+            temp=next
+           }
+
+           let tempNode=this.head
+           while (tempNode) {
+            console.log(tempNode.value)
+            tempNode=tempNode.next
+            
+           }
+
+
+  }
+
 }
 
 const l1 = new LinkedList();
@@ -119,6 +152,7 @@ l1.push(1);
 l1.push(2);
 l1.push(3);
 l1.push(4);
+l1.reverse()
 // console.log(l/
 // // 1)
 // l1.unshift(0)

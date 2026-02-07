@@ -98,6 +98,31 @@ this.head=newNode
 this.length++
 
 }
+
+
+shift(){
+  if(!this.length)return null
+
+  if(this.length==1){
+    this.head=null
+    this.tail=null
+
+    return
+  }
+  
+let tempNode=this.head
+
+this.head=this.head.next
+this.head.prev=null
+tempNode.next=null
+return tempNode.value
+
+
+
+}
+
+
+
 }
 
 
@@ -114,4 +139,10 @@ d1.push(3)
 d1.unshift(0)
 
 // console.log(d1)
+d1.print()
+
+console.log(d1.shift()+'shifteddddddd')
+
+
+
 d1.print()
